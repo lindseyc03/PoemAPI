@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ranked Poems - PoemAPI</title>
+</head>
+<body>
+    <h1>Ranked Poems</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Linecount</th>
+                <th>Rank</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for poem in poems %}
+                <tr>
+                    <td>{{ poem[0] }}</td>
+                    <td>{{ poem[1] }}</td>
+                    <td>{{ poem[2] }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('ranked_poems') }}">
+                            <input type="hidden" name="poem_id" value="{{ poem[3] }}">
+                            <input type="number" name="rank" value="{{ poem[4] }}" min="1" max="10">
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+</body>
+</html>

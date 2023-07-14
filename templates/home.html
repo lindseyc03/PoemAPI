@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - PoemAPI</title>
+</head>
+<body>
+    <h1>Home</h1>
+
+    <form method="POST" action="{{ url_for('home') }}">
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author">
+
+        <label for="rank">Rank:</label>
+        <input type="number" id="rank" name="rank" min="1" max="10">
+
+        <label for="lines">Lines:</label>
+        <input type="number" id="lines" name="lines" min="1" max="100">
+
+        <button type="submit">Query</button>
+    </form>
+
+    {% if results %}
+        <h2>Results:</h2>
+        <ul>
+            {% for poem in results %}
+                <li>
+                    <h3>{{ poem.title }}</h3>
+                    <p>Author: {{ poem.author }}</p>
+                    <p>Lines: {{ poem.lines|join('<br>') }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="{{ url_for('ranked_poems') }}">Ranked Poems</a>
+    <a href="{{ url_for('about') }}">About</a>
+</body>
+</html>
