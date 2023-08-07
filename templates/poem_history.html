@@ -2,31 +2,32 @@
 <html>
 <head>
     <title>Poem History - Poem API</title>
+    <!-- Link to your main.css using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
     <h1>Poem History</h1>
 
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Lines</th>
-        </tr>
-        {% for poem in poems %}
-        <tr>
-            <td>{{ poem.title }}</td>
-            <td>{{ poem.author }}</td>
-            <td>
-                <ul>
-                    {% for line in poem.lines.split('\n') %}
-                    <li>{{ line }}</li>
-                    {% endfor %}
-                </ul>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    <form method="POST" action="{{ url_for('clear_history') }}">
+        <button class="delete-button" type="submit">Clear Poem History</button>
+    </form>
 
-    <a href="{{ url_for('home') }}">Go Back to Home</a>
+    <div class="history-container">
+        {% if history_cleared %}
+        <p>Poem history has been cleared.</p>
+        {% endif %}
+
+        {% for poem in poems %}
+        <div class="poem">
+            <h3>{{ poem.title }}</h3>
+            <p>Author: {{ poem.author }}</p>
+            <p class="poem-lines">
+                {{ poem.lines|safe }}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a class="delete-button" href="{{ url_for('home') }}">Go Back to Home</a>
 </body>
 </html>

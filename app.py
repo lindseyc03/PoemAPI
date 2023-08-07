@@ -6,6 +6,9 @@ import requests
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///poemshistory.db'  # Change the database URI if needed
+app.static_url_path = '/static'  
+app.static_folder = 'static' 
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db) 
 
@@ -55,7 +58,17 @@ def home():
 @app.route('/poem_history')
 def poem_history():
     poems = Poem.query.all()
-    return render_template('poem_history.html', poems=poems)
+    return render_template('poem_history.html', poems=poems, history_cleared=False)
+
+@app.route('/clear_history', methods=['POST'])
+def clear_history():
+    try:
+        Poem.query.delete()
+        db.session.commit()
+        return render_template('poem_history.html', poems=[], history_cleared=True)
+    except:
+        db.session.rollback()
+        return render_template('poem_history.html', poems=[], history_cleared=False)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -2,34 +2,34 @@
 <html>
 <head>
     <title>Home - Poem API</title>
+    <!-- Link to your main.css using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <h1>Home</h1>
+    <div class="root">
+        <div class="header">
+            <img class="logo" src="{{ url_for('static', filename='swirl_logo.png') }}" alt="logo">
+        </div>
 
-    <form method="POST" action="/">
-        <label for="num_poems">How many random poems would you like to receive? </label>
-        <input type="number" id="num_poems" name="num_poems" min="1" max="10" required>
-        <button type="submit">Get Poems</button>
-    </form>
+        <form method="POST" action="/">
+            <label for="num_poems">How many random poems would you like to receive? </label>
+            <input type="number" id="num_poems" name="num_poems" min="1" max="10" required>
+            <button type="submit">Get Poems</button>
+        </form>
 
-    {% if poems %}
-    <h2>Random Poems:</h2>
-    <ul>
         {% for poem in poems %}
-        <li>
+        <div class="poem">
             <h3>{{ poem.title }}</h3>
             <p>Author: {{ poem.author }}</p>
-            <p>Lines:</p>
-            <ul>
+            <p class="poem-lines">
                 {% for line in poem.lines %}
-                <li>{{ line }}</li>
+                {{ line }}
                 {% endfor %}
-            </ul>
-        </li>
+            </p>
+        </div>
         {% endfor %}
-    </ul>
-    {% endif %}
 
-    <a href="{{ url_for('poem_history') }}">View Poem History</a>
+        <a href="{{ url_for('poem_history') }}">View Poem History</a>
+    </div>
 </body>
 </html>

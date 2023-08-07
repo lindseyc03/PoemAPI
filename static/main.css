@@ -1,0 +1,66 @@
+/* Add this to your main.css */
+body {
+  background-image: url("../static/Background_Final_RR.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+/*.root {
+  padding: 20px;
+}*/
+
+.logo {
+  margin-bottom: 30px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  background-color: #282a36;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.poem-list {
+  list-style: none;
+  padding: 0;
+}
+
+.poem {
+  background-color: #282a36;
+  border: 1px solid #6f7191;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.poem h3 {
+  margin: 0;
+}
+
+.poem p {
+  margin: 5px 0;
+}
+.poem-lines {
+  white-space: pre-line;
+  margin: 0; /* Add this line to remove margins */
+}
+
