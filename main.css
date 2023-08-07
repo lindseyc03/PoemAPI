@@ -1,0 +1,13 @@
+body {
+    background-image: url("Background_Final_RR.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  body {
+    color: white;
+}
+.logo {
+  margin-bottom: 30px; 
+}
