@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poem History - Poem API</title>
+</head>
+<body>
+    <h1>Poem History</h1>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Lines</th>
+        </tr>
+        {% for poem in poems %}
+        <tr>
+            <td>{{ poem.title }}</td>
+            <td>{{ poem.author }}</td>
+            <td>
+                <ul>
+                    {% for line in poem.lines.split('\n') %}
+                    <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('home') }}">Go Back to Home</a>
+</body>
+</html>
